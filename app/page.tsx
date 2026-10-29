@@ -6,7 +6,7 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import { ServiceLoop } from "@/components/ui/service-loop";
 import { NotchedProjectCard } from "@/components/ui/notched-project-card";
 import AnimatedText from "@/components/ui/animated-text";
-import { LiquidNavbar } from "@/components/ui/liquid-glass-navbar";
+import ImmersiveFullscreenNav from "@/components/ui/immersive-full-screen-nav";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -158,10 +158,7 @@ function recommendationFor(goal: Goal, usage: Usage, condition: Condition) {
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [tickerPaused, setTickerPaused] = useState(false);
-  const menuButton = useRef<HTMLButtonElement>(null);
-  const mobileMenu = useRef<HTMLElement>(null);
   const ticker = useRef<HTMLDivElement>(null);
   const selectorPanel = useRef<HTMLDivElement>(null);
   const [activePpf, setActivePpf] = useState(0);
@@ -216,34 +213,6 @@ export default function Home() {
     }
   }, [recommenderStep]);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    const button = menuButton.current;
-    const close = () => setMenuOpen(false);
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      event.preventDefault();
-      close();
-      button?.focus({ preventScroll: true });
-    };
-    // This is a compact disclosure, so the rest of the page stays scrollable.
-    const onOutside = (event: Event) => {
-      if (event.target instanceof Node && !button?.closest("header")?.contains(event.target)) close();
-    };
-    const desktop = window.matchMedia("(min-width: 1021px)");
-    const onResize = () => { if (desktop.matches) close(); };
-    desktop.addEventListener("change", onResize);
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("pointerdown", onOutside);
-    document.addEventListener("focusin", onOutside);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("pointerdown", onOutside);
-      document.removeEventListener("focusin", onOutside);
-      desktop.removeEventListener("change", onResize);
-    };
-  }, [menuOpen]);
-
   const resetRecommender = () => {
     setGoal(null);
     setUsage(null);
@@ -252,43 +221,7 @@ export default function Home() {
 
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Brilhar — início">
-          <img src="/media/logo-brilhar.png" alt="Brilhar Centro de Estética Automotiva" />
-        </a>
-
-        <LiquidNavbar />
-
-        <LiquidMetalButton
-          className="header-cta"
-          href={WHATSAPP}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Solicitar orçamento <Arrow />
-        </LiquidMetalButton>
-
-        <button
-          className="menu-button"
-          ref={menuButton}
-          aria-controls="mobile-navigation"
-          type="button"
-          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          <span className="menu-label">{menuOpen ? "Fechar" : "Menu"}</span>
-          <span className="menu-lines" aria-hidden="true"><i /><i /></span>
-        </button>
-
-        <nav ref={mobileMenu} id="mobile-navigation" aria-label="Navegação móvel" inert={!menuOpen} className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-          <a href="#servicos" onClick={() => setMenuOpen(false)}>Serviços</a>
-          <a href="#ppf" onClick={() => setMenuOpen(false)}>PPF</a>
-          <a href="#sobre" onClick={() => setMenuOpen(false)}>A Brilhar</a>
-          <a href="#contato" onClick={() => setMenuOpen(false)}>Contato</a>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Falar no WhatsApp <Arrow /></a>
-        </nav>
-      </header>
+      <ImmersiveFullscreenNav whatsapp={WHATSAPP} />
 
       <section
         className="hero"

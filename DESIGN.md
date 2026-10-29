@@ -1,14 +1,16 @@
 # Brilhar — direção visual
 
-A atualização de outubro de 2026 adapta as referências fornecidas pelo usuário: Nimbus Liquid Navbar e CinematicFooter. A identidade permanece automotiva, com fotografia do trabalho, preto esverdeado e turquesa. A composição editorial usa superfícies amplas, cantos discretos e títulos Anton com texto Geist. Tons claros de verde equilibram as fotografias e os fundos escuros.
+A atualização de outubro de 2026 adapta as referências fornecidas pelo usuário: Immersive Full Screen Nav (Hyperiux Vault / 21st.dev) e CinematicFooter. A identidade permanece automotiva, com fotografia do trabalho, preto esverdeado e turquesa. A composição editorial usa superfícies amplas, cantos discretos e títulos Anton com texto Geist. Tons claros de verde equilibram as fotografias e os fundos escuros.
 
 ## Componentes
 
-`components/ui/liquid-glass-navbar.tsx` adapta o marcador líquido com CSS, sincronizado às seções por IntersectionObserver. Links continuam acessíveis por teclado e funcionais sem o efeito. Sem áudio. Até 1020 px, logo e botão de menu compartilham uma barra compacta com o mesmo material escuro. O menu abre logo abaixo, com quatro links em duas colunas e uma ação de WhatsApp. Fecha ao escolher um link, tocar fora, sair por Tab ou pressionar Escape; Escape devolve o foco ao botão. O painel não bloqueia a rolagem nem prende o foco.
+`components/ui/immersive-full-screen-nav.tsx` substitui a navegação anterior em desktop e celular. Logo e botão de menu ocupam o cabeçalho fixo; o painel de tela inteira abre lateralmente com GSAP e revela os links e duas fotografias reais da Brilhar. O fundo é preto esverdeado, com ações e setas em turquesa. Os links mantêm os destinos Serviços, PPF, A Brilhar e Contato; WhatsApp e Instagram usam os contatos existentes.
+
+O painel usa `dialog.showModal()`: o navegador mantém o foco dentro do menu e torna o conteúdo externo inerte. Escape e Fechar encerram o painel e devolvem o foco ao botão; a escolha de uma seção fecha o menu e direciona o foco ao destino. A rolagem da página fica bloqueada enquanto o painel está aberto; o próprio painel rola em telas baixas. Movimento reduzido desativa a abertura lateral, as entradas e a troca de letras. O hover por letras é limitado a mouse, e o foco mantém indicação visível. O componente anterior foi removido por ter sido substituído integralmente.
 
 `components/ui/motion-footer.tsx` adapta a assinatura tipográfica monumental e os links translúcidos do rodapé de referência. Os links levam ao WhatsApp, Instagram e às seções reais da Brilhar. A assinatura tem revelação progressiva onde o navegador suporta animações vinculadas à rolagem; nos demais fica visível normalmente. Não usa conteúdo de demonstração ou créditos da marca de exemplo.
 
-Os componentes foram adaptados em React e CSS em vez de portar o shader WebGL e o runtime GSAP dos exemplos. Tailwind 4 e TypeScript já estão instalados; a pasta `components/ui` organiza os componentes reutilizáveis, sem necessidade de inicializar outro projeto ou instalar shadcn.
+Os componentes usam React, CSS e as dependências indicadas em cada seção; a navbar utiliza GSAP conforme o novo anexo. Tailwind 4 e TypeScript já estão instalados; a pasta `components/ui` organiza os componentes reutilizáveis, sem necessidade de inicializar outro projeto ou instalar shadcn.
 
 ## Acessibilidade e comportamento
 

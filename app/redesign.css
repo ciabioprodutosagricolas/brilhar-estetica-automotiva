@@ -281,3 +281,72 @@ a.liquid-metal-button,button.liquid-metal-button { position:relative; display:in
  .floating-whatsapp .whatsapp-mark { display:block; width:24px; height:24px; }
 }
 @media(hover:hover) and (pointer:fine) and (max-width:1020px) { .mobile-menu a:hover { background:#21473e; } .mobile-menu a:last-child:hover { background:#b9eee0; } }
+
+/* Immersive fullscreen navigation — Hyperiux reference, Brilhar colors/media. */
+.immersive-nav-header { position:fixed; z-index:70; top:max(20px,env(safe-area-inset-top)); left:4%; right:4%; height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:8px 12px 8px 20px; border-radius:999px; background:rgba(6,27,28,.94); box-shadow:inset 0 1px 0 #b9eee05c,0 12px 30px -18px #000; }
+.immersive-brand { display:flex; align-items:center; min-height:48px; }
+.immersive-brand img { display:block; width:148px; height:auto; }
+.immersive-menu-toggle { display:flex; align-items:center; justify-content:center; gap:18px; min-height:48px; min-width:112px; padding:0 20px; border:0; border-radius:999px; background:#8cf3de; color:#061b1c; font:650 14px/1 var(--font-geist-sans),sans-serif; cursor:pointer; }
+.immersive-menu-bars { position:relative; display:block; width:22px; height:16px; }
+.immersive-menu-bars i { position:absolute; left:0; width:22px; height:2px; background:currentColor; border-radius:2px; }
+.immersive-menu-bars i:first-child { top:4px; }
+.immersive-menu-bars i:last-child { top:12px; }
+.immersive-menu-bars.is-close i:first-child { top:8px; transform:rotate(45deg); }
+.immersive-menu-bars.is-close i:last-child { top:8px; transform:rotate(-45deg); }
+.immersive-dialog { position:fixed; inset:0; width:100%; height:100%; height:100dvh; max-width:none; max-height:none; margin:0; padding:0; border:0; overflow:auto; overscroll-behavior:contain; background:#061b1c; color:#e8fff6; }
+.immersive-dialog::backdrop { background:#061b1c; }
+.immersive-dialog:not([open]) { display:none; }
+.immersive-nav-header-open { position:absolute; background:none; box-shadow:none; border-radius:0; padding-left:0; padding-right:0; }
+.immersive-panel { display:flex; flex-direction:column; justify-content:space-between; min-height:100%; gap:36px; padding:140px 7% 36px; }
+.immersive-intro { margin:0; color:#a9d4c8; font-size:14px; line-height:1.6; }
+.immersive-main { display:grid; grid-template-columns:1.05fr 1fr; align-items:center; gap:8%; }
+.immersive-links { display:flex; flex-direction:column; gap:4px; }
+.immersive-links a { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:64px; padding:4px 0; font:400 clamp(56px,6.3vw,94px)/1.1 var(--font-display),sans-serif; text-transform:uppercase; letter-spacing:-.015em; color:#e8fff6; }
+.immersive-links .animated-arrow { color:#8cf3de; }
+.immersive-link-mask { display:inline-block; overflow:hidden; white-space:nowrap; line-height:1.18; }
+.immersive-link-mask>span { display:inline-block; white-space:pre; text-shadow:0 1.2em currentColor; transition:transform 450ms cubic-bezier(.625,.05,0,1); transition-delay:var(--letter-delay); }
+.immersive-photos { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center; }
+.immersive-photos figure { margin:0; overflow:hidden; border-radius:12px; aspect-ratio:4/5; background:#153b36; }
+.immersive-photos figure:last-child { margin-top:64px; }
+.immersive-photos img { display:block; width:100%; height:100%; object-fit:cover; }
+.immersive-photos figure:first-child img { object-position:50% 70%; }
+.immersive-footer { display:flex; align-items:center; gap:32px; flex-wrap:wrap; padding-top:28px; border-top:1px solid #376159; font-size:14px; }
+.immersive-footer>a { display:inline-flex; gap:12px; align-items:center; min-height:48px; }
+.immersive-whatsapp { padding:12px 24px; border-radius:999px; background:#8cf3de; color:#061b1c; font-weight:650; }
+.immersive-instagram { color:#d1ece1; }
+.immersive-footer>span { margin-left:auto; color:#a9d4c8; font-size:13px; }
+.immersive-navigation :focus-visible { outline:2px solid #8cf3de; outline-offset:5px; }
+.immersive-menu-toggle:focus-visible,.immersive-whatsapp:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+html.immersive-nav-active .floating-whatsapp { visibility:hidden; }
+@media(hover:hover) and (pointer:fine) {
+ .immersive-links a:hover { color:#8cf3de; }
+ .immersive-links a:hover .immersive-link-mask>span { transform:translateY(-1.2em); }
+ .immersive-menu-toggle:hover,.immersive-whatsapp:hover { background:#b9eee0; }
+}
+.immersive-links a:focus-visible .immersive-link-mask>span { transform:translateY(-1.2em); }
+@media(max-width:1020px) {
+ .immersive-main { gap:6%; }
+ .immersive-panel { padding-left:5%; padding-right:5%; }
+ .immersive-links a { font-size:clamp(52px,7vw,72px); }
+ .immersive-photos { gap:12px; }
+}
+@media(max-width:767px) {
+ .immersive-nav-header { top:max(16px,env(safe-area-inset-top)); left:16px; right:16px; height:72px; padding:8px 10px 8px 18px; gap:16px; }
+ .immersive-brand img { width:128px; }
+ .immersive-menu-toggle { gap:12px; min-width:98px; padding:0 16px; font-size:13px; }
+ .immersive-nav-header-open { padding-left:8px; padding-right:8px; }
+ .immersive-panel { padding:112px 24px max(24px,env(safe-area-inset-bottom)); gap:24px; }
+ .immersive-intro { max-width:250px; font-size:13px; }
+ .immersive-main { display:flex; flex-direction:column; align-items:stretch; gap:24px; }
+ .immersive-links a { min-height:58px; font-size:clamp(42px,11.8vw,64px); padding:0; }
+ .immersive-photos { gap:12px; }
+ .immersive-photos figure { aspect-ratio:16/10; border-radius:8px; }
+ .immersive-photos figure:last-child { margin-top:0; }
+ .immersive-footer { gap:8px 24px; padding-top:20px; }
+ .immersive-whatsapp { justify-content:center; width:100%; }
+ .immersive-footer>span { font-size:12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .immersive-link-mask>span { transition:none; text-shadow:none; }
+ .immersive-links a:hover .immersive-link-mask>span,.immersive-links a:focus-visible .immersive-link-mask>span { transform:none; }
+}

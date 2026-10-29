@@ -20,6 +20,7 @@ Abra http://localhost:3000. As alterações são atualizadas durante o desenvolv
 - `app/page.tsx`: textos, seções, contatos e interações (menu, benefícios do PPF, recomendador e perguntas frequentes).
 - `app/globals.css` e `app/redesign.css`: estilos, animações e responsividade; `redesign.css` é carregado por último.
 - `components/ui/`: navegação, botões, títulos animados, cards, vídeos em loop e rodapé.
+- `components/ui/immersive-full-screen-nav.tsx`: menu de tela inteira compartilhado por celular e computador, com animação GSAP, links, contatos e fotos da Brilhar.
 - `app/layout.tsx`: fontes, título, descrição, canonical e dados estruturados.
 - `app/robots.ts` e `app/sitemap.ts`: arquivos para mecanismos de busca.
 - `public/media/`: logo e fotografias; `public/`: ícones e demais arquivos públicos.
