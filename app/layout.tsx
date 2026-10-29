@@ -2,12 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@fontsource/anton/400.css";
 import "./globals.css";
+import "./redesign.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brilhar-estetica-automotiva.netlify.app";
 const SITE_TITLE =
   "Brilhar Estética Automotiva | PPF e detalhamento em Rondonópolis";
 const SITE_DESCRIPTION =
-  "PPF, polimento técnico, vitrificação, higienização e lavagem detalhada em Rondonópolis. Cuidado profissional para todos os carros.";
+  "PPF, polimento técnico, higienização e lavagem detalhada em Rondonópolis. Cuidado profissional para todos os carros.";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,6 @@ export const metadata: Metadata = {
     "estética automotiva em Rondonópolis",
     "PPF em Rondonópolis",
     "polimento técnico",
-    "vitrificação automotiva",
     "lavagem detalhada",
     "higienização automotiva",
   ],
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/media/polimento.webp",
-        width: 1536,
-        height: 1024,
+        url: "/media/trabalhos/polimento-001.webp",
+        width: 1600,
+        height: 1427,
         alt: "Polimento profissional realizado pela Brilhar Estética Automotiva",
       },
     ],
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["/media/polimento.webp"],
+    images: ["/media/trabalhos/polimento-001.webp"],
   },
   formatDetection: {
     address: false,
@@ -99,9 +99,9 @@ const businessStructuredData = {
   url: SITE_URL,
   logo: `${SITE_URL}/media/logo-brilhar.png`,
   image: [
-    `${SITE_URL}/media/polimento.webp`,
-    `${SITE_URL}/media/ppf-application.webp`,
-    `${SITE_URL}/media/lavagem.jpg`,
+    `${SITE_URL}/media/trabalhos/polimento-001.webp`,
+    `${SITE_URL}/media/trabalhos/ppf-049.webp`,
+    `${SITE_URL}/media/trabalhos/lavagem-018.webp`,
   ],
   telephone: "+55 66 99691-9667",
   email: "brilharfinanceiro@gmail.com",
@@ -120,7 +120,6 @@ const businessStructuredData = {
     itemListElement: [
       "PPF",
       "Polimento técnico",
-      "Vitrificação automotiva",
       "Lavagem detalhada",
       "Higienização interna",
     ].map((name) => ({
